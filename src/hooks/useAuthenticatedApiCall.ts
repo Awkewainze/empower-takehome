@@ -6,14 +6,14 @@ import { fetchAuthenticated, NoOp } from "@/utils";
 import { useNavigate } from "react-router";
 
 export function useAuthenticatedApiRequest<TResponse extends object, TError extends Errors.ErrorResponse = Errors.ErrorResponse>(url: string, method: keyof typeof HttpMethod = "GET", data?: object, onSuccess?: (response: TResponse) => void, onError?: (error: TError) => void) {
-    const { triggerFn, response, errorResponse, loading } = useCallbackAuthenticatedApiRequest<TResponse, TError>(url, method, data, onSuccess, onError);
+    const { triggerFn, response, errorResponse, loading, manualSets } = useCallbackAuthenticatedApiRequest<TResponse, TError>(url, method, data, onSuccess, onError);
     const [token] = useAuthToken();
 
     useEffect(() => {
         triggerFn();
     }, [token, method, url, data]);
 
-    return { response, errorResponse, loading };
+    return { response, errorResponse, loading, manualSets };
 }
 
 export function useCallbackAuthenticatedApiRequest<TResponse extends object, TError extends Errors.ErrorResponse = Errors.ErrorResponse>(url: string, method: keyof typeof HttpMethod = "GET", data?: object, onSuccess?: (response: TResponse) => void, onError?: (error: TError) => void) {
@@ -73,5 +73,5 @@ export function useCallbackAuthenticatedApiRequest<TResponse extends object, TEr
     }, [url, method, token, data]);
 
 
-    return { triggerFn, response, errorResponse, loading };
+    return { triggerFn, response, errorResponse, loading, manualSets: { setResponse, setErrorResponse, setLoading }};
 }

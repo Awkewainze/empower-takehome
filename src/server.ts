@@ -46,13 +46,13 @@ export async function ensureAuthorized<T extends Bun.BunRequest>(req: T, authFun
 	}
 }
 
-export async function zParseOrBadRequest<TSchema extends ZodType>(schema: TSchema, data: unknown, errorObj?: any): Promise<{ isValid: true, result: output<TSchema> } | { isValid: false, response: Response }> {
+export async function zParseOrBadRequest<TSchema extends ZodType>(schema: TSchema, data: unknown, overrideResponse?: Response): Promise<{ isValid: true, result: output<TSchema> } | { isValid: false, response: Response }> {
 	const parseResult = await schema.safeParseAsync(data);
 	if (parseResult.success) {
 		return { isValid: true, result: parseResult.data };
 	}
 
-	return { isValid: false, response: BadRequest({ error: errorObj ?? { flattened: flattenError(parseResult.error), pretty: prettifyError(parseResult.error) } }) };
+	return { isValid: false, response: BadValidation(parseResult.error)};
 }
 
 export const server = serve({
@@ -174,7 +174,7 @@ export const server = serve({
 				return ensureAuthorized(req,
 					async (token) => token.userId === userId,
 					async () => {
-						const zNoteResult = await zParseOrBadRequest(zNote, req.json());
+						const zNoteResult = await zParseOrBadRequest(zNote, await req.json());
 
 						if (!zNoteResult.isValid) {
 							return zNoteResult.response;

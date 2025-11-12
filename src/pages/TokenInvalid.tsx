@@ -12,7 +12,7 @@ export function TokenInvalid() {
 
     useTimeout(() => {
         navigate("/auth/login");
-    }, 3000);
+    }, 2000);
 
     return <div>
         You have been logged out, returning to login page...

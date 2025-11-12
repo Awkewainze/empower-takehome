@@ -9,7 +9,7 @@ export * from "./Login";
 export * from "./Logout";
 export * from "./NewNotePage";
 export * from "./NotFoundPage";
-export * from "./Note";
+export * from "./NotePage";
 export * from "./NotesList";
 export * from "./Register";
 export * from "./TokenInvalid";

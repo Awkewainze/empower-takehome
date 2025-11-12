@@ -8,7 +8,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { AuthRequired, Home, Layout, Login, Logout, NewNotePage, Note, NotesList, NotFoundPage, Register } from "@/pages";
+import { AuthRequired, Home, Layout, Login, Logout, NewNotePage, NotePage, NotesList, NotFoundPage, Register } from "@/pages";
 
 import "./index.css";
 import { TokenInvalid } from "./pages/TokenInvalid";
@@ -33,7 +33,8 @@ const app = (
 						<Route path="notes">
 							<Route index element={<NotesList />} />
 							<Route path="new" element={<NewNotePage />} />
-							<Route path=":id" element={<Note />} />
+							<Route path=":id" element={<NotePage mode="View" />} />
+							<Route path=":id/edit" element={<NotePage mode="Edit" />} />
 						</Route>
 					</Route>
 				</Route>
