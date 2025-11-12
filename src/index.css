@@ -151,8 +151,6 @@ button {
   &:not(.icon) {
     padding: 5px 30px;
   }
-  &.icon {
-  }
   background-blend-mode: darken;
   cursor: pointer;
   font-size: 14px;
