@@ -2,14 +2,23 @@
 
 ## Getting started
 
+### Shortlist to run
+
+* Clone this repo
+* Install [Bun runtime](https://bun.com)
+* Install [Docker](https://docs.docker.com/compose/install/) (or my preferred [Podman](https://github.com/containers/podman-compose)) Compose
+* `docker compose up db` -- This will use existing `.env` file to set up user + pass + database schema
+* `bun run install` -- Installs npm dependencies
+* `bun run db:init` -- Creates tables in MySQL db
+* `bun run dev` -- Runs app, Bun automatically pulls in `.env` file, and uses it's `DATABASE_URL` to determine connection
+
 ### Install
 
 * [Bun runtime](https://bun.com)
 * MySQL
     * (Optionally) Using Docker Compose
         * `docker compose up db`
-            * `MYSQL_ROOT_PASSWORD` environmental variable must be set
-    * Manually created schema before running the app
+            * This will use the variables set in `.env`
 
 ### Install bun dependencies
 
