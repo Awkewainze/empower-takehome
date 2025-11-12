@@ -1,0 +1,135 @@
+header {
+  padding: 1rem;
+  display: flex;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+
+  nav {
+    a {
+      margin: 0.1rem;
+      padding: 0.1rem;
+    }
+  }
+}
+
+main {
+  margin: 1rem;
+}
+
+.login,
+.register {
+  form {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    >div {
+      margin: 0.5rem;
+      display: flex;
+      justify-content: center;
+
+      >* {
+        margin: 0 0.2rem 0 0.2rem;
+      }
+    }
+  }
+}
+
+.errorText {
+  color: red;
+}
+
+.display-linebreak {
+  white-space: pre-line;
+}
+
+.justify-center-down {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  * {
+    align-self: center;
+  }
+}
+
+.text-overflow-ellipis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-form {
+  display: flex;
+
+  form {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+
+    >* {
+      margin: 0.5rem;
+      display: flex;
+      justify-content: flex-start;
+
+      >input,
+      textarea {
+        margin-left: 1rem;
+      }
+    }
+
+    textarea {
+      flex-basis: 80%;
+      min-height: 20rem;
+    }
+  }
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+
+  >div:not(:nth-of-type(1)) {
+    justify-content: flex-start;
+    margin: 0.5rem;
+    padding: 0.4rem;
+    border: 1px groove black;
+    border-radius: 10px;
+    max-width: 100%;
+    cursor: pointer;
+  }
+
+  >div:nth-of-type(1) {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5rem;
+    button {}
+  }
+}
+
+.note-info {
+  display: flex;
+  flex-direction: column;
+
+  >div:not(.times) {
+    justify-content: flex-start;
+    margin: 0.2rem;
+  }
+
+  >div.times {
+    display: flex;
+
+    >div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    margin: 2rem;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    opacity: 75%;
+  }
+}
